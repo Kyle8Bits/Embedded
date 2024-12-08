@@ -12,15 +12,15 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
+const apiToken = process.env.API_TOKEN;
+
 // API route to get data from MongoDB
 app.get('/signals', async (req, res) => {
-    try {
-        const signals = await Signal.find();  
-        res.status(200).json(signals);  
-    } catch (err) {
-        console.error('Error fetching signals:', err);
-        res.status(500).send('Error fetching signals');
-    }
+    if (req.headers['authorization'] === `Bearer ${apiToken}`) {
+        res.status(200).json({ message: 'Authorized request' });
+      } else {
+        res.status(401).json({ error: 'Unauthorized' });
+      }
 });
 
 // Basic route to test server
