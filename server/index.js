@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const connectDB = require('./connectDB');  // Assuming this file is in the same directory
-const Signal = require('./Signal');  // Assuming this is the file where you defined your Signal model
+const connectDB = require('./config/db');  // Assuming this file is in the same directory
+const Signal = require('./models/Signal');  // Assuming this is the file where you defined your Signal model
 
 const app = express();
 
