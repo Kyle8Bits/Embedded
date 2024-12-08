@@ -10,13 +10,7 @@ function Devices() {
 
   useEffect(() => {
     // Fetch the data from the server with the token in the header
-    fetch('https://embedded-server-h127nimnq-kyle8bits-projects.vercel.app/signals', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer wWa8rXsXzrnss8wCXP6xvNwX`,  // Replace with your token
-      },
-      mode: 'no-cors',
-    })
+    fetch('https://embedded-server.vercel.app/signals')
       .then((response) => {
         if (!response.ok) {
           // If response is not OK, log the error and throw an exception
