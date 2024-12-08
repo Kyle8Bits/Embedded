@@ -10,7 +10,7 @@ function Devices() {
 
   useEffect(() => {
     // Fetch the data from the server
-    fetch('http://localhost:1414/api/signals')
+    fetch('https://embedded-server-h127nimnq-kyle8bits-projects.vercel.app/signals')
       .then((response) => response.json())
       .then((data) => setSignals(data))
       .catch((error) => console.error('Error fetching signals:', error));

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');  // Assuming this file is in the same directory
 const Signal = require('./models/Signal');  // Assuming this is the file where you defined your Signal model
-
+const cors = require('cors');
 const app = express();
 
 // Middleware to handle JSON requests
