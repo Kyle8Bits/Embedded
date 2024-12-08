@@ -1,22 +1,25 @@
-// /api/signals.js
+const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const app = express();
 const Signal = require('./models/Signal');
 const connectDB = require('./config/db');
+app.use(cors());
+app.use(express.json());
 
-// Ensure database connection
 connectDB()
 
-module.exports = async (req, res) => {
-  await connectDatabase();  // Ensure DB connection is established
-  
-  if (req.method === 'GET') {
-    try {
-      const signals = await Signal.find();  // Fetch signals from DB
-      return res.status(200).json(signals);
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ message: 'Error fetching signals' });
-    }
+app.get('/', async (req, res) => {
+  try {
+    const signals = await Signal.find(); // Fetch all signals from the database
+    res.json(signals);  // Send the data as a response
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error fetching signals' });
   }
-  return res.status(405).json({ message: 'Method Not Allowed' });  // Handle other HTTP methods
-};
+});
+
+const PORT = 1414;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
