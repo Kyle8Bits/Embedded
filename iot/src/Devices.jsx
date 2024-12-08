@@ -9,10 +9,22 @@ function Devices() {
   const [signals, setSignals] = useState([])
 
   useEffect(() => {
-    // Fetch the data from the server
-    fetch('https://embedded-server-h127nimnq-kyle8bits-projects.vercel.app/signals')
-      .then((response) => response.json())
-      .then((data) => setSignals(data))
+    // Fetch the data from the server with the token in the header
+    fetch('https://embedded-server-h127nimnq-kyle8bits-projects.vercel.app/signals', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer wWa8rXsXzrnss8wCXP6xvNwX`,  // Replace with your token
+      },
+      mode: 'cors',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          // If response is not OK, log the error and throw an exception
+          throw new Error(`Unauthorized: ${response.status}`);
+        }
+        return response.json(); // If OK, parse the response body
+      })
+      .then((data) => setSignals(data)) // Set the signals in state
       .catch((error) => console.error('Error fetching signals:', error));
   }, []);
 

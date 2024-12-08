@@ -14,8 +14,8 @@ connectDB();
 // API route to get data from MongoDB
 app.get('/signals', async (req, res) => {
     try {
-        const signals = await Signal.find();  // Fetch all documents from the 'signals' collection
-        res.status(200).json(signals);  // Send the signals as a JSON response
+        const signals = await Signal.find();  
+        res.status(200).json(signals);  
     } catch (err) {
         console.error('Error fetching signals:', err);
         res.status(500).send('Error fetching signals');
