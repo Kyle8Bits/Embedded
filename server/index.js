@@ -6,14 +6,7 @@ const cors = require('cors');
 const app = express();
 
 // Middleware to handle JSON requests
-const allowedOrigins = ['http://localhost:5173'];
-
-// Use CORS middleware with a specific origin configuration
-app.use(cors({
-  origin: allowedOrigins,  // Allow requests from localhost:5173
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
-}));
+app.use(cors());
 
 app.use(express.json());
 // Connect to MongoDB
