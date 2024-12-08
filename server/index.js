@@ -13,7 +13,7 @@ app.use(express.json());
 connectDB();
 
 // API route to get data from MongoDB
-app.get('/signals', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         const signals = await Signal.find();  
         res.status(200).json(signals);  
@@ -24,9 +24,9 @@ app.get('/signals', async (req, res) => {
 });
 
 // Basic route to test server
-app.get("/", (req, res) => {
-    res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//     res.send("Hello World");
+// });
 
 // Start the server
 app.listen(3000, () => {
