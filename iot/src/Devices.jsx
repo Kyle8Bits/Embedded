@@ -15,7 +15,7 @@ function Devices() {
       headers: {
         'Authorization': `Bearer wWa8rXsXzrnss8wCXP6xvNwX`,  // Replace with your token
       },
-      mode: 'cors',
+      mode: 'no-cors',
     })
       .then((response) => {
         if (!response.ok) {
