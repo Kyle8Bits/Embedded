@@ -1,0 +1,14 @@
+#card_container{
+    display: flex;
+    max-width: 20vw;
+    flex-direction: column;
+    background-color: rgb(129, 213, 134);
+}
+
+#name{
+    margin: 0px;
+}
+
+#status{
+    margin: 0px;
+}
