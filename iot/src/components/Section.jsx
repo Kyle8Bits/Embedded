@@ -19,7 +19,7 @@ function Section({name, status, isActive, location, id}) {
         announce(`LED 1 is now ${newStatus}`);
 
         try {
-            await axios.put(`http://localhost:3000/devices/${id}`, { status: newStatus });
+            await axios.put(`https://embedded-server.vercel.app/devices/${id}`, { status: newStatus });
         } catch (error) {
             console.error('Error updating device status', error);
         }

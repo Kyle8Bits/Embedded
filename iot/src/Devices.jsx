@@ -11,7 +11,7 @@ function Devices() {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/devices');
+        const response = await axios.get('https://embedded-server.vercel.app/devices');
         setDevices(response.data);
       } catch (error) {
         console.error('Error fetching devices', error);
