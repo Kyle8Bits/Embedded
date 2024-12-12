@@ -1,36 +1,61 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const connectDB = require('./config/db');  // Assuming this file is in the same directory
-const Signal = require('./models/Signal');  // Assuming this is the file where you defined your Signal model
+const connectDB = require('./config/db'); 
+const Device = require('./models/Device');  
 const cors = require('cors');
 const app = express();
 
-// Middleware to handle JSON requests
 app.use(cors());
 
 app.use(express.json());
-// Connect to MongoDB
+
 connectDB();
 
-const apiToken = process.env.API_TOKEN;
-
-// API route to get data from MongoDB
-app.get('/signals', async (req, res) => {
+app.get('/devices', async (req, res) => {
     try {
-        const signals = await Signal.find();  
-        res.status(200).json(signals);  
+        const devices = await Device.find();
+        res.json(devices);
     } catch (err) {
-        console.error('Error fetching signals:', err);
-        res.status(500).send('Error fetching signals');
+        console.error('Error fetching devices', err);
+        res.status(500).send('Server Error');
     }
 });
 
-// Basic route to test server
+app.put('/devices/:id', async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    console.log(id + status);
+
+    try {
+        const device = await Device.findOneAndUpdate({ id }, { status }, { new: true });
+        if (!device) {
+            return res.status(404).json({ message: 'Device not found' });
+        }
+        res.json(device);
+    } catch (err) {
+        console.error('Error updating device status', err);
+        res.status(500).send('Server Error');
+    }
+});
+
+app.get('/devices/:id/status', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const device = await Device.findOne({ id });
+        if (!device) {
+            return res.status(404).json({ message: 'Device not found' });
+        }
+        res.json({ status: device.status });
+    } catch (err) {
+        console.error('Error fetching device status', err);
+        res.status(500).send('Server Error');
+    }
+});
+
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-// Start the server
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });
