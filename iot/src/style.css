@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 body{
     background-color: #eeeeee;
@@ -146,33 +147,78 @@ input:checked + .slider:before {
 #dashboard_image{
   width: 100%;
   height: 60vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #f1db6c;
   margin-top: 80px;
+  z-index: 1;
 }
 
 #my_img{
-  height: 50%;
-  width: auto;
-  position: absolute;
-  margin-left: 15%;
-  box-shadow: 6px 3px 10px rgb(12, 12, 12);
+  width:100%;
+  object-fit: cover;
 }
-#des{
-  width: 50%;
-  height: 40%;
+
+#h1{
   position: absolute;
-  margin-left: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Nunito';
-  font-size: 20px;
-  color: #000000;
+  color: white;  /* Text color */
+  font-size: 1.5rem;  /* Font size */
+  z-index: 10;
+  left: 48%;  /* Horizontal position */
+  top: 20%;  /* Vertical position */
+  font-family: "Roboto Condensed";  /* Font family */
+  background-color: #0359daa2;  /* Semi-transparent background */
+  padding: 10px;  /* Optional: Add padding for better text spacing */
+  font-weight: 400;
+  letter-spacing: 2px; 
+}
+
+#h2{
+  position: absolute;
+  color: white;  /* Text color */
+  font-size: 4rem;  /* Font size */
+  z-index: 10;
+  left: 47.5%;  /* Horizontal position */
+  top: 22%;  /* Vertical position */
+  font-family: "Roboto Condensed";  /* Font family */
+  padding: 10px;  /* Optional: Add padding for better text spacing */
+  font-weight: 500;
+  letter-spacing: 2px; 
+}
+
+#h3{
+  position: absolute;
+  color: white;  /* Text color */
+  font-size: 4rem;  /* Font size */
+  z-index: 10;
+  left: 47.5%;  /* Horizontal position */
+  top: 30%;  /* Vertical position */
+  font-family: "Roboto Condensed";  /* Font family */
+  padding: 10px;  /* Optional: Add padding for better text spacing */
+  font-weight: 400;
+  letter-spacing: 2px; 
+}
+
+#navigate{
+  position: absolute;
+  width: 180px;
+  height: 40px;
+  font-size: 18px;
+  color: #ffffff;
   font-weight: 700;
+  background-color: #014dc0;
+  z-index: 10;
+  left: 48%; 
+  top: 45%;
+  border-radius: 10px;
+  border: 0px;
+}
+
+#navigate:hover{
+  background-color: #86b0ff;
+  color: rgb(0, 0, 0);
 }
 
 #student_info{
@@ -200,18 +246,4 @@ input:checked + .slider:before {
   font-weight: 700;
 }
 
-#navigate{
-  width: 180px;
-  height: 40px;
-  font-size: 18px;
-  color: #000000;
-  font-weight: 700;
-  margin-left: 10%;
-  margin-top: 10px;
-  background-color: #bab8b1;
-}
 
-#navigate:hover{
-  background-color: #39372d;
-  color: white;
-}
