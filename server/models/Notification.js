@@ -5,7 +5,7 @@ const NotificationSchema = new mongoose.Schema({
     device: { type: String, required: true },
     date: { type: Date, required: true, default: Date.now },
     time: { type: String, required: true } // Store time as a string (e.g., "14:30:00")
-}, { collection: 'notifications' });
+}, { collection: 'notifications'});
 
 // Pre-save hook to set the time field automatically
 NotificationSchema.pre('save', function(next) {
@@ -26,4 +26,5 @@ NotificationSchema.pre('save', function(next) {
     next();
 });
 
-module.exports = mongoose.model('Notification', NotificationSchema);
+const Notification = mongoose.model('Notification', NotificationSchema);
+module.exports = Notification;
