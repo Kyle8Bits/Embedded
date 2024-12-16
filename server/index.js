@@ -31,6 +31,17 @@ app.put('/devices/:id', async (req, res) => {
         if (!device) {
             return res.status(404).json({ message: 'Device not found' });
         }
+
+        const message = `${device.name} has been turned ${status}`;
+
+        const newNotification = new Notification({
+            message,
+            device: device.name // Assuming you want to store the device's name
+            // 'date' and 'time' will be set automatically by the schema
+        });
+
+        await newNotification.save();
+
         res.json(device);
     } catch (err) {
         console.error('Error updating device status', err);
