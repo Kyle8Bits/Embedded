@@ -7,8 +7,18 @@ import { useNavigate } from 'react-router-dom'; // Nhập useNavigate
 
 function Devices() {
   const [devices, setDevices] = useState([]);
-  const [notifications, setNotifications] = useState(['No new notifications', '12:00 Turn off red LED']); // Trạng thái thông báo
+  const [notifications, setNotifications] = useState([]); // Trạng thái thông báo
   const navigate = useNavigate(); // Khởi tạo useNavigate
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get('https://embedded-server.vercel.app/notifications');
+      setNotifications(response.data);
+ 
+    } catch (error) {
+      console.error('Error fetching notifications', error);
+    }
+  }
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -19,13 +29,13 @@ function Devices() {
         console.error('Error fetching devices', error);
       }
     };
-
+    fetchNotifications();
     fetchDevices();
   }, []);
 
-  // Hàm xử lý khi nhấn nút "Back To Homepage"
+
   const handleBackToHomepage = () => {
-    navigate('/'); // Điều hướng về trang chính
+    navigate('/'); 
   };
 
   return (
@@ -40,6 +50,7 @@ function Devices() {
             isActive={device.isActive} 
             location={device.location} 
             id={device.id}
+            fetchNotifications={fetchNotifications}
           />
         ))}
       </div>

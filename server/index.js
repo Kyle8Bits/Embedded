@@ -29,16 +29,36 @@ app.put('/devices/:id', async (req, res) => {
 
     try {
         const device = await Device.findOneAndUpdate({ id }, { status }, { new: true });
+
         if (!device) {
             return res.status(404).json({ message: 'Device not found' });
         }
 
         const message = `${device.name} has been turned ${status}`;
 
+        const date = new Date();
+
+        const day = (`0${date.getDate()}`).slice(-2);
+        const year = date.getFullYear();
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const month = monthNames[date.getMonth()];
+        const formattedDate = `${day} ${month} ${year}`;
+
+
+        const hours = (`0${date.getHours()}`).slice(-2);
+        const minutes = (`0${date.getMinutes()}`).slice(-2);
+        const seconds = (`0${date.getSeconds()}`).slice(-2);
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
+        console.log(formattedTime);
+
         const newNotification = new Notification({
             message,
-            device: device.name // Assuming you want to store the device's name
-            // 'date' and 'time' will be set automatically by the schema
+            device: device.name,
+            date: formattedDate,
+            time: formattedTime
         });
 
         await newNotification.save();
@@ -63,6 +83,17 @@ app.get('/devices/:id/status', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+app.get('/notifications', async (req, res) => {
+    try {
+        const notifications = await Notification.find();
+        res.json(notifications);
+    } catch (err) {
+        console.error('Error fetching notifications', err);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 app.get("/", (req, res) => {
     res.send("Hello World");

@@ -322,3 +322,34 @@ input:checked + .slider:before {
 #social_media a:hover {
     color: #00aced; /* Màu khi hover, bạn có thể thay đổi nếu muốn */
 }
+
+#time{
+    margin-bottom: 0;
+    font-family: 'Nunito';
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+#message{
+    margin-top: 0;
+    font-family: 'Nunito';
+    font-size: 22px;
+    margin-left: 15px;
+
+}
+
+#notification_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#odd #even {
+    width: 100%;
+    height: 100%;
+}
+
+#odd {
+    background-color: #dfdfdf;
+}
