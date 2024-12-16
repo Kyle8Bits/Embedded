@@ -12,7 +12,8 @@ function Devices() {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get('https://embedded-server.vercel.app/notifications');
+      // const response = await axios.get('https://embedded-server.vercel.app/notifications');
+      const response = await axios.get('http://localhost:3000/notifications'); 
       setNotifications(response.data);
  
     } catch (error) {
@@ -23,7 +24,8 @@ function Devices() {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await axios.get('https://embedded-server.vercel.app/devices');
+        // const response = await axios.get('https://embedded-server.vercel.app/devices');
+        const response = await axios.get('http://localhost:3000/devices'); 
         setDevices(response.data);
       } catch (error) {
         console.error('Error fetching devices', error);
