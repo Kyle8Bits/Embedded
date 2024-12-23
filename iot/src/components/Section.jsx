@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-function Section({name, status, isActive, location, id}) {
+function Section({name, status, isActive, location, id, fetchNotifications}) {
 
     const [led1, setLed1] = useState(status === 'ON' ? true : false);
 
@@ -19,7 +19,9 @@ function Section({name, status, isActive, location, id}) {
         announce(`LED 1 is now ${newStatus}`);
 
         try {
+            // await axios.put(`https://embedded-server.vercel.app/devices/${id}`, { status: newStatus });
             await axios.put(`http://localhost:3000/devices/${id}`, { status: newStatus });
+            fetchNotifications();
         } catch (error) {
             console.error('Error updating device status', error);
         }

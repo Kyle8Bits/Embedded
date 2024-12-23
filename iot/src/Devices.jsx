@@ -4,24 +4,11 @@ import './style.css';
 import axios from 'axios';
 import Notification from './components/Notification';
 import { useNavigate } from 'react-router-dom'; // Nhập useNavigate
-import io from 'socket.io-client';
 
 function Devices() {
   const [devices, setDevices] = useState([]);
   const [notifications, setNotifications] = useState([]); // Trạng thái thông báo
   const navigate = useNavigate(); // Khởi tạo useNavigate
-
-  useEffect(() => {
-      const socket = io('http://localhost:3000');
-
-      socket.on('databaseChange', (data) => {
-          fetchNotifications();
-      });
-
-      return () => {
-          socket.disconnect(); // Clean up connection on component unmount
-      };
-  }, []);
 
   const fetchNotifications = async () => {
     try {
