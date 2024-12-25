@@ -11,11 +11,22 @@ function Devices() {
   const [notifications, setNotifications] = useState([]); // Trạng thái thông báo
   const navigate = useNavigate(); // Khởi tạo useNavigate
 
+  const fetchDevices = async () => {
+    try {
+      // const response = await axios.get('https://embedded-server.vercel.app/devices');
+      const response = await axios.get('http://localhost:3000/devices'); 
+      setDevices(response.data);
+    } catch (error) {
+      console.error('Error fetching devices', error);
+    }
+  };
+
   useEffect(() => {
       const socket = io('http://localhost:3000');
 
       socket.on('databaseChange', (data) => {
           fetchNotifications();
+          fetchDevices();
       });
 
       return () => {
@@ -35,15 +46,7 @@ function Devices() {
   }
 
   useEffect(() => {
-    const fetchDevices = async () => {
-      try {
-        // const response = await axios.get('https://embedded-server.vercel.app/devices');
-        const response = await axios.get('http://localhost:3000/devices'); 
-        setDevices(response.data);
-      } catch (error) {
-        console.error('Error fetching devices', error);
-      }
-    };
+    
     fetchNotifications();
     fetchDevices();
   }, []);
@@ -65,7 +68,7 @@ function Devices() {
             isActive={device.isActive} 
             location={device.location} 
             id={device.id}
-            fetchNotifications={fetchNotifications}
+            type = {device.type}
           />
         ))}
       </div>

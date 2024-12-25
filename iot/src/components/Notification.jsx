@@ -2,17 +2,23 @@ import React from 'react'
 import '../style.css'
 
 function Notification({notifications}) {
-
-  
-
   return (
     <div id="notification_container">
         <div id="title">Notification</div>
         <div id="notification_content">
-
         {notifications.slice(0, 10).reverse().map((notification, index) => {
             const isDetected = notification.message.includes("detected");
-            const containerId = isDetected ? 'detected' : index % 2 === 0 ? 'odd' : 'even';
+            
+          const isIdle = notification.message.includes("idle");
+          
+          // Determine the containerId based on the conditions
+          const containerId = isDetected
+            ? 'detected'
+            : isIdle
+            ? 'idle'
+            : index % 2 === 0
+            ? 'odd'
+            : 'even';
 
             return (
                 <div id={containerId} key={index}>
@@ -21,7 +27,6 @@ function Notification({notifications}) {
                 </div>
             );
         })}
-
         </div>
     </div>
   )

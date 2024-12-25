@@ -30,6 +30,19 @@ body {
     box-shadow: 2px 3px 4px rgb(132, 130, 130);
 }
 
+#notification_container {
+    width: 60vw; /* Chiều rộng cho cả hai card */
+    height: auto; /* Thay đổi thành auto để tự động điều chỉnh chiều cao */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black solid 1px;
+    border-radius: 10px;
+    font-family: 'Nunito';
+    margin-top: 20px;
+    box-shadow: 2px 3px 4px rgb(132, 130, 130);
+}
+
 #title {
     background-color: #001A6E;
     border-top-left-radius: 10px;
@@ -347,9 +360,13 @@ input:checked + .slider:before {
 
 }
 
-#odd #even #detected{
+#odd #even #detected #idle{
     width: 100%;
     height: 100%;
+}
+
+#idle{
+    background-color: #36f660;
 }
 
 #odd {
@@ -360,3 +377,24 @@ input:checked + .slider:before {
     background-color: #f68c36;
 }
 
+#ON{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f44336;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+#OFF{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#2196F3 ;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
