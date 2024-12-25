@@ -347,7 +347,7 @@ input:checked + .slider:before {
 
 }
 
-#odd #even {
+#odd #even #detected{
     width: 100%;
     height: 100%;
 }
@@ -355,3 +355,8 @@ input:checked + .slider:before {
 #odd {
     background-color: #dfdfdf;
 }
+
+#detected{
+    background-color: #f68c36;
+}
+
