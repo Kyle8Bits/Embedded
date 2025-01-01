@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
-    const db_url = 'mongodb+srv://khoamaidang2611:khoa_phuc@cluster0.pqsc3.mongodb.net/iot_data?retryWrites=true&w=majority';
+    const db_url = '<your mongodb url>';
 
     try {
         await mongoose.connect(db_url);
